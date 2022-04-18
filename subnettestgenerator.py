@@ -79,6 +79,18 @@ def ex_subnetmask(dir: int):
     print("Dotted Decimal notation:" + str(info.subnet))
     input("Press Enter for new")
 
+def ip2bin(ip):
+    ip =  ".".join(map(str,["{0:08b}".format(int(x)) for x in str(ip).split(".")]))
+    return ip
+
+def ip2binsubnet(ip, cidr):
+    ip = ip2bin(ip)
+    place = cidr + math.floor(cidr/8)
+    return ip[0:place] + "|" + ip[place:len(ip)]
+    
+
+
+
 def ex_hosts() -> None:
     info = generate_network_info(generate_random_interface())
     sub = random.randint(0, 1)
@@ -89,6 +101,8 @@ def ex_hosts() -> None:
         print("IP: " + str(info.network) + "/..")
         print("Subnet mask: " + str(info.subnet))
     
+    print("IP in binary: ")
+
     print("Number of network bits: ")
     print("Number of host bits: ")
     print("Number of available host addresses: ")
@@ -98,6 +112,8 @@ def ex_hosts() -> None:
 
     print("IP: " + str(info.network) + "/" + str(info.CIDR))
     print("Subnet mask: " + str(info.subnet))
+
+    print("IP in binary (network | host): " + ip2binsubnet(info.network,info.CIDR))
     
     print("Number of network bits: " + str(info.CIDR))
     print("Number of host bits: " + str(32 - int(info.CIDR)))
@@ -129,10 +145,10 @@ def ex_ip_net_broad_host() -> None:
     print("IP: " + str(info.ip) + "/" + str(info.CIDR))
     print("Subnet mask: " + str(info.subnet))
     
-    print("Network address: " + str(info.network))
-    print("Broadcast address: " + str(info.broadcast))
-    print("First available host address: " + str(info.firsthost))
-    print("Last available host address: " + str(info.lasthost))
+    print("Network address: " + str(info.network) + " \t\t\t--> (All host bits set to 0: " + ip2binsubnet(info.network,info.CIDR) + ")")
+    print("Broadcast address: " + str(info.broadcast) + " \t\t--> (All host bits set to 1: " + ip2binsubnet(info.broadcast,info.CIDR) + ")")
+    print("First available host address: " + str(info.firsthost) + " \t--> (Network address +1: " + ip2binsubnet(info.firsthost,info.CIDR) + ")")
+    print("Last available host address: " + str(info.lasthost) + " \t--> (Broadcast address -1: " + ip2binsubnet(info.lasthost,info.CIDR) + ")")
     print("Number of available host addresses: " + str(info.hosts-2))
     
     
