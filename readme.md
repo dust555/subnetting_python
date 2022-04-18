@@ -6,3 +6,11 @@ running script
 ```
 python subnettestgenerator.py
 ```
+
+Edit script for linux and mac
+```
+#windows
+#clear = lambda: os.system('cls')
+#linux and mac
+clear = lambda: os.system('clear')
+```

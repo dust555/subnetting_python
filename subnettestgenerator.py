@@ -7,7 +7,10 @@ import struct
 import math
 import os
 
+#windows
 clear = lambda: os.system('cls')
+#linux and mac
+#clear = lambda: os.system('clear')
 
 from dataclasses import dataclass
 
