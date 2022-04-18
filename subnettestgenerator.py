@@ -4,7 +4,6 @@ from ipaddress import IPv4Interface
 import ipaddress
 import random
 import struct
-import tabulate
 import math
 import os
 
