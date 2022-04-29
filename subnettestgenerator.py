@@ -178,7 +178,7 @@ def ex_subnet_networks() -> None:
 
 def ex_subnet_hosts() -> None:
     hosts = random.randint(2,1024)
-    hostbits = math.ceil(math.log2(hosts))
+    hostbits = math.ceil(math.log2(hosts + 2))
     info = generate_network_info(generate_random_interface(30-(hostbits+1),30-(hostbits)))
     print("Starting network address: " + str(info.network) + "/" + str(info.CIDR))
     print("Maximum number of hosts on a network: " + str(hosts))
